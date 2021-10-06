@@ -8,7 +8,7 @@ services:
 before_install:
   - docker build -t ivankhokhlov/react-test -f ./client/Dockerfile.dev ./client
 
-# script is the test running sectionn
+# script is the test running section
 # anything that exists here with code other than 0 will stop travis from running on
 script:
   - docker run -e CI=true ivankhokhlov/react-test npm run test
@@ -16,13 +16,13 @@ script:
 # now we build all the images
 # no need to specify the Dockerfile since it will take the default name of Dockerfile
 after_success:
-  - docker build -t ivankhokhlov/multi-client ./client
   - docker build -t ivankhokhlov/multi-nginx ./nginx
+  - docker build -t ivankhokhlov/multi-client ./client
   - docker build -t ivankhokhlov/multi-server ./server
   - docker build -t ivankhokhlov/multi-worker ./worker
   # login to docker CLI using ENV variables
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ivankhokhlov/multi-client
   - docker push ivankhokhlov/multi-nginx
+  - docker push ivankhokhlov/multi-client
   - docker push ivankhokhlov/multi-server
   - docker push ivankhokhlov/multi-worker
