@@ -9,7 +9,7 @@ before_install:
   - docker build -t ivankhokhlov/react-test -f ./client/Dockerfile.dev ./client
 
 # script is the test running section
-# anything that exists here with code other than 0 will stop travis from running on
+# anything that exists here with code other than 0 will stop travis from running onn
 script:
   - docker run -e CI=true ivankhokhlov/react-test npm run test
 
@@ -31,7 +31,7 @@ deploy:
   provider: elasticbeanstalk
   region: 'eu-central-1'
   app: 'multi-docker2'
-  env: 'multi-docker2'
+  env: 'multi-docker3'
   bucket_name: 'elasticbeanstalk-eu-central-1-300259718964'
   bucket_path: 'multi-docker'
   on:
