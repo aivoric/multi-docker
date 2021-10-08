@@ -26,3 +26,15 @@ after_success:
   - docker push ivankhokhlov/multi-client
   - docker push ivankhokhlov/multi-server
   - docker push ivankhokhlov/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-central-1'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
+  bucket_name: 'elasticbeanstalk-eu-central-1-300259718964'
+  bucket_path: 'multi-docker'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
